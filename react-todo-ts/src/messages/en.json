@@ -1,0 +1,8 @@
+{
+    "app.name": "Todo",
+    "menu.home": "Home",
+    "menu.author": "Author",
+    "menu.about": "About",
+    "currentLocale": "Current Locale",
+    "notFound": "Not Found"
+}

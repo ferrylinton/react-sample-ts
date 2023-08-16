@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+
+    .nav-menu {
+      @apply p-2 z-[52] flex flex-col fixed w-[calc(100%-10px)] top-[55px] left-[5px] bg-white border border-slate-300 rounded-md transition duration-300 shadow-[0px_5px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_5px_20px_-15px_rgba(22,_23,_24,_0.2)]
+    }
+  
+    .nav-menu {
+      @apply md:h-auto md:flex-row md:relative md:w-auto md:top-auto md:border-0 md:shadow-none md:bg-transparent 
+    }
+  
+    .nav-menu.open {
+      @apply overflow-hidden animate-slideDownAndFade
+    }
+  
+    .nav-menu.close {
+      @apply opacity-0 overflow-hidden
+    }
+  
+    .nav-menu.close {
+      @apply md:opacity-100 md:h-auto
+    }
+  
+    .nav-menu a{
+      @apply w-full px-4 py-3 md:px-3 md:py-2 leading-none rounded-[3px] hover:bg-slate-200 border border-transparent hover:border-slate-300
+    }
+  
+    .nav-menu a.active{
+      @apply font-bold
+    }
+  
+    .nav-menu-button{
+      @apply h-[35px] flex justify-center items-center gap-2 border border-slate-300 rounded-full px-3 outline-none
+    }
+  
+    .nav-dropdown-trigger{
+      @apply h-[35px] flex justify-center items-center gap-2 border border-slate-300 rounded-full px-3 outline-none
+    }
+  
+    .nav-dropdown-trigger{
+      @apply hover:bg-slate-200
+    }
+  
+    .nav-dropdown-trigger[data-state='open'] {
+      @apply bg-slate-200
+    }
+  
+    .nav-dropdown-trigger[data-disabled] {
+      @apply bg-slate-200 hover:bg-slate-200
+    }
+  
+    .nav-dropdown-content{
+      @apply z-50 border border-slate-300 min-w-[200px] bg-white rounded-md p-[5px] shadow-[0px_5px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_5px_20px_-15px_rgba(22,_23,_24,_0.2)] data-[side=bottom]:animate-slideDownAndFade
+    }
+  
+    .nav-dropdown-item{
+      @apply relative leading-none rounded-[3px] flex items-center h-[35px] px-[5px] pl-[25px] select-none outline-none cursor-pointer
+    }
+  
+    .nav-dropdown-item{
+      @apply hover:bg-slate-200
+    }
+  
+    .nav-dropdown-indicator{
+      @apply absolute left-0 w-[25px] inline-flex items-center justify-center text-green-600
+    }
+  
+    .nav-dropdown-indicator-icon{
+      @apply w-[16px] h-[16px]
+    }
+  
+  }

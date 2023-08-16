@@ -1,0 +1,2 @@
+export const DEFAULT_LOCALE = 'id';
+export const AUTHENTICATED_USER_COOKIE = 'AUTHENTICATED_USER'

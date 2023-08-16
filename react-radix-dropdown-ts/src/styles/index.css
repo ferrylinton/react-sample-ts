@@ -1,0 +1,11 @@
+@import url('./tailwind.css');
+@import url('./navbar.css');
+
+
+@layer components {
+
+  svg {
+    @apply w-[12px] h-[12px] fill-current
+  }
+
+}
