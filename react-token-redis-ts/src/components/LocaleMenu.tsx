@@ -4,7 +4,8 @@ import AngelDownIcon from '../icons/AngelDownIcon';
 import CheckIcon from '../icons/CheckIcon';
 import EnIcon from '../icons/EnIcon';
 import IdIcon from '../icons/IdIcon';
-import { useLocaleContext } from '../providers/locale-provider';
+import { useLocaleContext } from '../providers/locale-context';
+
 
 
 const locales = [

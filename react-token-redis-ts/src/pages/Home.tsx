@@ -26,12 +26,12 @@ export default function HomePage() {
                 console.log(error);
                 setError(true);
 
-                if(error instanceof AxiosError){
-                    const { baseURL, url, method} = (error as AxiosError).config as InternalAxiosRequestConfig;
-                    setMessage(`${error.message} at (${baseURL}${url}) [${method?.toUpperCase()}]`); 
-                }else{
+                if (error instanceof AxiosError) {
+                    const { baseURL, url, method } = (error as AxiosError).config as InternalAxiosRequestConfig;
+                    setMessage(`${error.message} at (${baseURL}${url}) [${method?.toUpperCase()}]`);
+                } else {
                     setMessage(error.message);
-                }                
+                }
             });
     }
 

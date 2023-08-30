@@ -14,12 +14,12 @@ export default function TodoItem({ todo, handleUpdate, handleDelete }: Props) {
             <div className="flex gap-1">
                 {!todo.done &&
                     <button
-                        onClick={() => handleUpdate(todo._id)}
+                        onClick={() => handleUpdate(todo.id)}
                         className="border border-slate-300 hover:border-green-500 hover:text-green-800 hover:bg-green-100 text-xs py-1 px-3 rounded uppercase">
                         <FormattedMessage id="btn.done" defaultMessage={'Done'} />
                     </button>}
                 <button
-                    onClick={() => handleDelete(todo._id)}
+                    onClick={() => handleDelete(todo.id)}
                     className="border border-slate-300 hover:border-red-500 hover:text-red-800 hover:bg-red-100 text-xs py-1 px-3 rounded uppercase">
                     <FormattedMessage id="btn.delete" defaultMessage={'Delete'} />
                 </button>

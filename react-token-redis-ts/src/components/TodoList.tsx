@@ -17,7 +17,7 @@ export default function TodoList({ todoes, handleUpdate, handleDelete }: Props) 
                 {
                     todoes.map((todo, _index) => {
                         return <TodoItem
-                            key={todo._id}
+                            key={todo.id}
                             todo={todo}
                             handleUpdate={handleUpdate}
                             handleDelete={handleDelete} />
