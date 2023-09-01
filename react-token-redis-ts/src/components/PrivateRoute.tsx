@@ -1,12 +1,13 @@
 import { Navigate, } from "react-router";
 import { Outlet } from "react-router-dom";
-import { useAuthContext } from "../providers/auth-context";
+import { authenticatedUserFromCookie } from "../services/auth-service";
+
 
 
 export default function PrivateRoute() {
-    const { getAuthenticatedUser } = useAuthContext();
 
-    if (!getAuthenticatedUser()) {
+
+    if (!authenticatedUserFromCookie()) {
         return <Navigate to="/login" replace />;
     }
 

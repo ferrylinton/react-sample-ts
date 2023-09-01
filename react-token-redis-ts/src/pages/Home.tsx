@@ -1,10 +1,10 @@
 import { AxiosError, InternalAxiosRequestConfig } from "axios";
 import { useEffect, useState } from "react";
+import { useIntl } from "react-intl";
 import AddForm from "../components/AddForm";
 import ErrorMessage from "../components/ErrorMessage";
 import TodoList from "../components/TodoList";
 import * as todoService from '../services/todo-service';
-import { useIntl } from "react-intl";
 
 export default function HomePage() {
 
@@ -46,11 +46,11 @@ export default function HomePage() {
                         loadTodoes();
                     } else {
                         setError(true);
-                        setMessage((data as ErrorResponse).message);
+                        setMessage((data as Message).message);
                     }
                 }).catch((error: AxiosError) => {
                     setError(true);
-                    setMessage((error.response?.data as ErrorResponse).message);
+                    setMessage((error.response?.data as Message).message);
                 });
         }
     }
@@ -62,11 +62,11 @@ export default function HomePage() {
                     loadTodoes();
                 } else {
                     setError(true);
-                    setMessage((data as ErrorResponse).message);
+                    setMessage((data as Message).message);
                 }
             }).catch((error: AxiosError) => {
                 setError(true);
-                setMessage((error.response?.data as ErrorResponse).message);
+                setMessage((error.response?.data as Message).message);
             });
     }
 
@@ -77,11 +77,11 @@ export default function HomePage() {
                     loadTodoes();
                 } else {
                     setError(true);
-                    setMessage((data as ErrorResponse).message);
+                    setMessage((data as Message).message);
                 }
             }).catch((error: AxiosError) => {
                 setError(true);
-                setMessage((error.response?.data as ErrorResponse).message);
+                setMessage((error.response?.data as Message).message);
             });
     }
 

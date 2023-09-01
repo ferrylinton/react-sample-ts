@@ -1,49 +1,54 @@
 import { FormEvent, useState } from 'react';
-import { token } from '../services/auth-service';
-import { useAuthContext } from '../providers/auth-context';
 import { useNavigate } from 'react-router-dom';
-import * as cookieService from '../services/cookies-service';
+import { login } from '../services/auth-service';
+import { useAppContext } from '../providers/app-context';
+
 
 
 export default function LoginPage() {
+
     const navigate = useNavigate();
-    const { setAuthenticatedUser } = useAuthContext();
-    const [error, setError] = useState(false);
+
+    const { loading, startProcessing, finishProcessing, showErrorAlert } = useAppContext();
 
     const [state, setState] = useState({
-        username: "admin",
-        password: "admin"
+        username: "",
+        password: ""
     });
 
     const onFieldChange = (event: any) => {
-        let value = event.target.value;
-        setState({ ...state, [event.target.name]: value });
+        setState({ ...state, [event.target.name]: event.target.value });
     };
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const { username, password } = state;
 
-        if (username.length > 0 && password.length > 0) {
-            try {
-                const { data } = await token(username, password);
-                setAuthenticatedUser(data);
-                cookieService.setAuthenticatedUser(data);
-
-                navigate('/');
-            } catch (error) {
-                console.log(error);
-            }
-        } else {
-            setError(true);
+        if(loading){
+            return;
         }
 
+        if (state.username.length > 0 && state.password.length > 0) {
+            try {
+                startProcessing();
+                const {status, data} = await login(state.username, state.password);
+                if(status === 200){
+                    navigate('/');
+                }else{
+                    showErrorAlert((data as Message).message)
+                }
+            } catch (error: any) {
+                showErrorAlert(error);
+            }finally{
+                finishProcessing();
+            }
+        } else {
+            showErrorAlert('Username and password is required');
+        }
     };
 
     return (
         <main className='flex flex-col h-full items-center justify-center'>
             <div className="text-xl uppercase pb-5 text-slate-500">Login</div>
-            {error && <div className='text-red-500 pb-4'>Invalid username or password</div>}
             <form
                 className='w-[300px] flex flex-col gap-3'
                 noValidate

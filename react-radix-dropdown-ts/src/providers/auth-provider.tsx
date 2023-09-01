@@ -1,39 +1,23 @@
-import { PropsWithChildren, createContext, useContext, useEffect, useState } from 'react';
+import { PropsWithChildren, createContext, useContext, useState } from 'react';
 import { revoke } from '../services/auth-service';
 import * as cookiesService from "../services/cookies-service";
 
 
 export const AuthContext = createContext<AuthContextProps>({
-    user: null,
-    setAuthenticatedUser: (_user: AuthenticatedUser | null) => null,
     getAuthenticatedUser: () => { return null },
     logout: async () => { },
 });
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
 
-    const [user, setUser] = useState<AuthenticatedUser | null>(null);
+    const [authenticatedUser, setAuthenticatedUser] = useState<AuthenticatedUser | null>(null);
 
-    useEffect(() => {
-        if (!user) {
+    const getAuthenticatedUser = (): AuthenticatedUser | null => {
+        if (!authenticatedUser) {
             setAuthenticatedUser(cookiesService.getAuthenticatedUser());
         }
 
-    }, [])
-
-    const setAuthenticatedUser = (user: AuthenticatedUser | null) => {
-        setUser(user);
-    }
-
-    const getAuthenticatedUser = (): AuthenticatedUser | null => {
-        if (!user) {
-            const authenticatedUser = cookiesService.getAuthenticatedUser();
-            setAuthenticatedUser(authenticatedUser);
-
-            return authenticatedUser;
-        }
-
-        return user;
+        return authenticatedUser;
     }
 
     const logout = async () => {
@@ -53,12 +37,10 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
             console.log(error);
         }
 
-        setUser(null);
+        setAuthenticatedUser(null);
     }
 
     const value: AuthContextProps = {
-        user,
-        setAuthenticatedUser,
         getAuthenticatedUser,
         logout
     };

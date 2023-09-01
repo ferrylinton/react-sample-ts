@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import CloseIcon from '../icons/CloseIcon';
 import MenuIcon from '../icons/MenuIcon';
 import LocaleMenu from './LocaleMenu';
+import ProfileMenu from './ProfileMenu';
 
 
 export default function Navbar() {
@@ -31,6 +32,7 @@ export default function Navbar() {
                     </div>
                     <div onClick={() => setIsOpen(false)} className={clsx('bg-transparent fixed inset-0 z-[51] md:hidden', !isOpen && 'hidden')} />
                     <LocaleMenu />
+                    <ProfileMenu/>
                     <button type='button' onClick={() => setIsOpen(!isOpen)} className='md:hidden'>
                         {!isOpen && <MenuIcon className=' w-[35px] h-[35px]' />}
                         {isOpen && <CloseIcon className=' w-[35px] h-[35px]' />}

@@ -2,15 +2,19 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { useNavigate } from 'react-router-dom';
 import AngelDownIcon from '../icons/AngelDownIcon';
 import UserIcon from '../icons/UserIcon';
-import { useLocaleContext } from '../providers/auth-provider';
+import { useAuthContext } from '../providers/auth-provider';
+import { useEffect, useState } from 'react';
 
 
 const ProfileMenu = () => {
 
     const navigate = useNavigate();
 
-    const { user, logout } = useLocaleContext();
+    const { getAuthenticatedUser, logout } = useAuthContext();
+    
+    const [authenticatedUser, setAuthenticatedUser] = useState(getAuthenticatedUser()); 
 
+ 
     const handleSelect = (href: string) => {
         navigate(href);
     }
@@ -25,7 +29,7 @@ const ProfileMenu = () => {
             <DropdownMenu.Trigger className='nav-dropdown-trigger' asChild>
                 <button type='button' aria-label="Customise options" >
                     <UserIcon className='w-[20px] h-[20px]' />
-                    <span>{user ? user.username : 'anonymous'}</span>
+                    <span>{authenticatedUser ? authenticatedUser.username : 'anonymous'}</span>
                     <AngelDownIcon className='w-[10px] h-[10px]' />
                 </button>
             </DropdownMenu.Trigger>
